@@ -75,6 +75,29 @@ h1 {
   transform: skew(-10deg) rotate(-10deg) translateX(1rem);
 }
 
+#button {
+  background: inherit;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 50vh;
+  margin: auto;
+  color: rgb(192, 192, 192);
+  text-shadow: 2px 2px 0 rgb(192, 11, 11);
+  font-family: "Press Start 2P", monospace;
+  font-size: 1rem;
+  text-align: center;
+  text-transform: uppercase;
+  margin: 0;
+  position: absolute;
+
+}
+
+#button a {
+  display: block;
+  margin-bottom: 1rem;
+}
+
 .buttons {
   display: flex;
   flex-direction: column;
@@ -191,6 +214,8 @@ h1 {
 
 
 
+
+
   <section class="splash-screen load">
     <div class="title">
       <h1 class="title-top"><span class="big">K</span>oerber</h1>
@@ -199,12 +224,11 @@ h1 {
 
     <div class="buttons grey-with-red">
       <a class="purple-with-blue">Fetch Integration</a>
-      <br>
-      <a href="https://voicedevelopment-koerberuk.fetchcore-cloud.com/api/v1/trigger/eb7a3e1b-9072-4981-904a-f4e405f766b2/activate">Start Picking</a>
+
+        <button id="button"><a href="https://voicedevelopment-koerberuk.fetchcore-cloud.com/api/v1/trigger/7f7e2306-6b4d-46df-8693-9609090eb12c/activate">Charge Kaila</button>
       <a>or</a>
       <a href="https://www.google.com/">Go to Charge</a>
     </div>
-
 
 
 
@@ -215,6 +239,25 @@ h1 {
       <div class="credit grey-with-red">Credit <span class="yellow-with-darkyellow">1</span></div>
     </div>
   </section>
+
+  <script>
+      window.addEventListener('load', (event) => {
+          document.getElementById("button").addEventListener("click", () => {
+              fetch('URL', {
+                  method: 'POST',
+                  body: JSON.stringify({ Username: 'test' }),
+                  mode:"cors",
+                  headers: {
+                      'Content-Type': 'application/json',
+                      'Authorisation': 'Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IlJFRXpNVGhFT1VaQ01EYzBPVGswTlVSQ05EUkdPRFEzUlRSR09URTRPVFUxTVVKRk5rVTFNZyJ9'
+                  }
+              }).then(res => res.json())
+                  .then(response => console.log('Success:', JSON.stringify(response)))
+                  .catch(error => console.error('Error:', error));
+          });
+      });
+  </script>
+
 
 </body>
 
